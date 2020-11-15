@@ -188,6 +188,9 @@ layui.define(['jquery','layer','form'], function(exports) {
     var AjaxHelper = {
         request : function(config) {
             var data = config.data ? config.data : {};
+	    if(config.contentType.indexOf("json")>-1){
+                data = JSON.stringify(data);
+            }
             var async = (typeof (config.async) === "boolean") ? config.async : true;
             $.ajax({
                 type : config.type ? config.type : "POST",
